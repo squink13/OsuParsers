@@ -229,6 +229,10 @@ namespace OsuParsers.Decoders
                         score.ScoreTimestamp = r.ReadDateTime();
                         r.BaseStream.Seek(sizeof(int), SeekOrigin.Current);
                         score.ScoreId = r.ReadInt64();
+                        if ((score.Mods & Mods.Target) != 0)
+                        {
+                            r.BaseStream.Seek(sizeof(double), SeekOrigin.Current);
+                        }
                         scores.Add(score);
                     }
 
